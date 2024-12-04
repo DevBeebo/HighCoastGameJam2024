@@ -12,15 +12,15 @@ func _ready():
 	$Timer.wait_time = reset_time
 
 # Triggered when something touches the button
-func interact(_area):
+func interact():
 	# Skips if it was already stood on
-	if state: return
-	state = true
-	state_changed.emit(not normally_closed)
+	if $Timer.is_stopped():
+		state = true
+		state_changed.emit(not normally_closed)
+		$Timer.start()
 
 # Triggered when something leaves the button
-func reset(_area):
+func reset():
 	# Skips if there are things still on the button
-	if self.has_overlapping_areas(): return
 	state = false
 	state_changed.emit(normally_closed)

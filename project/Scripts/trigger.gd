@@ -11,14 +11,14 @@ func _ready():
 	state_changed.emit(normally_closed)
 
 # Triggered when something touches the button
-func _on_area_entered(_area):
+func _on_body_entered(_area):
 	# Skips if it was already stood on
 	if state: return
 	state = true
 	state_changed.emit(not normally_closed)
 
 # Triggered when something leaves the button
-func _on_area_exited(_area):
+func _on_body_exited(_area):
 	# Skips if there are things still on the button
 	if self.has_overlapping_areas(): return
 	state = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://wekbn64p6gwv"]
+[gd_scene load_steps=8 format=3 uid="uid://vawcxnnc22v3"]
 
 [ext_resource type="PackedScene" uid="uid://di1rwdhvae4ac" path="res://Prefabs/player.tscn" id="1_28se8"]
 [ext_resource type="PackedScene" uid="uid://0wrven0muldp" path="res://Prefabs/floor_button.tscn" id="2_yg8pi"]
@@ -10,6 +10,9 @@ size = Vector2(1280, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hr26k"]
 size = Vector2(160, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_il87a"]
+size = Vector2(118, 10)
 
 [node name="Node2D" type="Node2D"]
 
@@ -26,15 +29,29 @@ position = Vector2(640, 448)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_ctr5a")
 
-[node name="FloorButton" parent="." instance=ExtResource("2_yg8pi")]
-position = Vector2(640, 438)
-
-[node name="Button" parent="." instance=ExtResource("3_jqob8")]
-
-[node name="Mover" parent="." instance=ExtResource("4_d3ph8")]
+[node name="Mover" parent="." node_paths=PackedStringArray("trigger") instance=ExtResource("4_d3ph8")]
 position = Vector2(580, 382)
-end_position = Vector2(186.975, 0)
-speed = 65.025
+type = 1
+end_position = Vector2(180, 0)
+speed = 60.0
+trigger = NodePath("../FloorButton")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mover"]
 shape = SubResource("RectangleShape2D_hr26k")
+
+[node name="Mover2" parent="." node_paths=PackedStringArray("trigger") instance=ExtResource("4_d3ph8")]
+position = Vector2(385, 433)
+type = 1
+end_position = Vector2(0, -300)
+speed = 150.0
+trigger = NodePath("../Button")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mover2"]
+shape = SubResource("RectangleShape2D_il87a")
+
+[node name="FloorButton" parent="." instance=ExtResource("2_yg8pi")]
+position = Vector2(618, 438)
+
+[node name="Button" parent="." instance=ExtResource("3_jqob8")]
+position = Vector2(466, 438)
+reset_time = 3.0

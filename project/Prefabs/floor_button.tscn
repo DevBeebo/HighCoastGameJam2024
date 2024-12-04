@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/trigger.gd" id="1_ky35m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fouxn"]
-size = Vector2(20, 3)
+size = Vector2(18, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pyeeq"]
 size = Vector2(20, 1)
@@ -25,5 +25,5 @@ collision_mask = 0
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_pyeeq")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
