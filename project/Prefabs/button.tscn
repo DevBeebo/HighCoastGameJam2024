@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://sdhr1o31o8u8"]
+
+[ext_resource type="Script" path="res://Scripts/button.gd" id="1_kremj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2w4fj"]
+radius = 7.0
+
+[node name="Button" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_kremj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_2w4fj")
+debug_color = Color(0, 0.645317, 0.262703, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="reset"]

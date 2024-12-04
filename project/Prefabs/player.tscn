@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://di1rwdhvae4ac"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_hy2qa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ou33"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ai8h"]
+radius = 7.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_hy2qa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0ou33")
+
+[node name="Interactor" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactor"]
+shape = SubResource("CircleShape2D_2ai8h")
+debug_color = Color(0, 0.645604, 0.256412, 0.42)

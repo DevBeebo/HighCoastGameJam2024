@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://0wrven0muldp"]
+
+[ext_resource type="Script" path="res://Scripts/trigger.gd" id="1_ky35m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fouxn"]
+size = Vector2(20, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pyeeq"]
+size = Vector2(20, 1)
+
+[node name="FloorButton" type="Area2D"]
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("1_ky35m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_fouxn")
+debug_color = Color(0, 0.64457, 0.278249, 0.42)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_pyeeq")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
