@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://vawcxnnc22v3"]
+[gd_scene load_steps=13 format=3 uid="uid://vawcxnnc22v3"]
 
 [ext_resource type="PackedScene" uid="uid://di1rwdhvae4ac" path="res://Scenes/Prefabs/player.tscn" id="1_1yvlr"]
 [ext_resource type="PackedScene" uid="uid://chufrnslirsie" path="res://Scenes/Prefabs/mover.tscn" id="2_5ypfr"]
 [ext_resource type="PackedScene" uid="uid://0wrven0muldp" path="res://Scenes/Prefabs/floor_button.tscn" id="3_n6ole"]
 [ext_resource type="PackedScene" uid="uid://sdhr1o31o8u8" path="res://Scenes/Prefabs/button.tscn" id="4_tas6q"]
 [ext_resource type="Texture2D" uid="uid://6v6dgf2ojcad" path="res://icon.svg" id="5_0nh6l"]
+[ext_resource type="Script" path="res://Scenes/Levels/level_end.gd" id="6_ha5my"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctr5a"]
 size = Vector2(1280, 20)
@@ -151,6 +152,9 @@ physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_gpf3x")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_od3ar"]
+radius = 32.0
+
 [node name="Level" type="Node2D"]
 
 [node name="Player1" parent="." instance=ExtResource("1_1yvlr")]
@@ -160,10 +164,10 @@ position = Vector2(384, 384)
 position = Vector2(896, 384)
 player_id = 1
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(640, 448)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("RectangleShape2D_ctr5a")
 
 [node name="Mover" parent="." node_paths=PackedStringArray("trigger") instance=ExtResource("2_5ypfr")]
@@ -198,3 +202,13 @@ reset_time = 3.0
 tile_set = SubResource("TileSet_4uwrj")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="LevelEnd" type="Area2D" parent="."]
+position = Vector2(672, 416)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("6_ha5my")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEnd"]
+shape = SubResource("CircleShape2D_od3ar")
+debug_color = Color(0.65526, 0.517151, 9.62615e-07, 0.42)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf2d4qc54mav6"]
+
+[ext_resource type="Script" path="res://Scripts/level_button.gd" id="1_g0k0i"]
+
+[node name="LevelButton" type="Button"]
+custom_minimum_size = Vector2(50, 50)
+theme_override_font_sizes/font_size = 30
+text = "0"
+script = ExtResource("1_g0k0i")
