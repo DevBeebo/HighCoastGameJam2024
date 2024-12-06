@@ -1,23 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://di1rwdhvae4ac"]
+[gd_scene load_steps=6 format=3 uid="uid://di1rwdhvae4ac"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_hy2qa"]
+[ext_resource type="SpriteFrames" uid="uid://qmspqg6e3bvq" path="res://Sprites/player_sprite.tres" id="2_l3pgs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ou33"]
+height = 22.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ai8h"]
 radius = 7.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v2yh4"]
+height = 22.0
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(0, -15)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_hy2qa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_0ou33")
 
 [node name="Interactor" type="Area2D" parent="."]
+position = Vector2(0, 4)
 collision_layer = 0
 collision_mask = 8
 
@@ -26,16 +32,24 @@ shape = SubResource("CircleShape2D_2ai8h")
 debug_color = Color(0, 0.645604, 0.256412, 0.42)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 4)
 enabled = false
 target_position = Vector2(0, 0)
 collision_mask = 5
 
 [node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(0, 4)
 collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CapsuleShape2D_v2yh4")
 debug_color = Color(0.729412, 0.462745, 0.282353, 0)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+sprite_frames = ExtResource("2_l3pgs")
+animation = &"Idle"
+frame_progress = 0.487487
 
 [connection signal="body_entered" from="HurtBox" to="." method="hit_danger"]

@@ -11,6 +11,7 @@ func _ready():
 	state_changed.emit(normally_closed)
 	$Timer.wait_time = reset_time
 
+
 # Triggered when something touches the button
 func interact():
 	# Skips if it was already stood on
@@ -18,6 +19,7 @@ func interact():
 		state = true
 		state_changed.emit(not normally_closed)
 		$Timer.start()
+
 
 # Triggered when something leaves the button
 func reset():

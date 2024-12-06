@@ -5,7 +5,7 @@ signal level_completed(completed_levels)
 
 var levels = [ # An array with all the levels in order. 0 is a test level
 	preload("res://Scenes/Levels/TestLevel.tscn"),
-	preload("res://Scenes/Levels/TestLevel.tscn"),
+	preload("res://Scenes/Levels/level_1.tscn"),
 	preload("res://Scenes/Levels/TestLevel.tscn"),
 	preload("res://Scenes/Levels/TestLevel.tscn"),
 ]
@@ -18,7 +18,7 @@ var level_scene : Node2D # The root node of the current level
 
 func _ready():
 	change_menu(current_menu)
-	pass
+	menu_canvas.get_node("LevelSelect").call_deferred("update", completed_levels)
 
 
 func change_menu(menu:String):

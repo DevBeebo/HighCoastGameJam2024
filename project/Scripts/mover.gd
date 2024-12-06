@@ -17,7 +17,7 @@ var returning : bool = false # If the Platform is returning to its starting posi
 func _ready():
 	# Takes all CollisionShapes and reparents them to the Platform so they can be moved
 	for c in self.get_children():
-		if c is CollisionShape2D:
+		if c is CollisionShape2D or c is TileMapLayer:
 			c.reparent($Platform)
 	
 	# If type == TOGGLE then it should always be moving as direction is all that need to flip

@@ -7,6 +7,5 @@ func _ready():
 
 
 func player_entered(_area):
-	print("yo")
 	if self.get_overlapping_bodies().size() == 2:
 		GameManager.complete_level()
