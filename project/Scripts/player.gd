@@ -1,10 +1,16 @@
 extends CharacterBody2D
 
+signal died(why) # Emitted when the player dies and what killed them (why)
 
 const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 
-@export var player_id : int
+@export var player_id : int # "0" for player #1 and "1" for player #2
+
+@onready var player_size : Vector2 = $CollisionShape2D.shape.get_rect().size # Used by squich_check for it to determine if the player got squished to death
+
+func _ready():
+	$"HurtBox/CollisionShape2D".shape.get_rect().size = player_size
 
 func _physics_process(delta):
 	#region Movement
@@ -30,3 +36,23 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Interact" + str(player_id)) and $Interactor.has_overlapping_areas():
 		$Interactor.get_overlapping_areas()[0].interact()
 	#endregion
+	# Check if the player should die of being squished
+	squish_check()
+
+func squish_check():
+	# Shots 4 hit scans to see if 2 on a axis both hit something, if they do the player dies
+	for a in range(2):
+		var hits : int = 0 # If this value becomes 2 the player will die
+		for d in range(2):
+			$RayCast2D.target_position = ((Vector2.RIGHT * player_size.x/2) if a == 0 else (Vector2.DOWN * player_size.y/2)) * (1 if d == 0 else -1)
+			$RayCast2D.force_raycast_update()
+			if $RayCast2D.is_colliding(): hits += 1
+		if hits == 2: 
+			print("Player ", player_id + 1, " Deaded")
+			died.emit("Squished")
+			GameManager.player_died(player_id, "Squished")
+			break
+			
+func hit_danger(_area):
+	died.emit("Spikes")
+	GameManager.player_died(player_id, "Spikes")
