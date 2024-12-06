@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://djve70sxgw1qs"]
+
+[ext_resource type="PackedScene" uid="uid://dh12tuqdymonl" path="res://Scenes/Menus/MainMenu.tscn" id="1_bmo82"]
+[ext_resource type="PackedScene" uid="uid://2yyjf50ngway" path="res://Scenes/Menus/LevelSelect.tscn" id="2_njem4"]
+[ext_resource type="PackedScene" uid="uid://dy23yr8ax4062" path="res://Scenes/Menus/Controls.tscn" id="3_fpa5n"]
+[ext_resource type="PackedScene" uid="uid://lxjdjxwviixe" path="res://Scenes/Menus/pause_menu.tscn" id="4_fydn3"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("1_bmo82")]
+visible = false
+
+[node name="LevelSelect" parent="CanvasLayer" instance=ExtResource("2_njem4")]
+visible = false
+
+[node name="Controls" parent="CanvasLayer" instance=ExtResource("3_fpa5n")]
+visible = false
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_fydn3")]
+visible = false

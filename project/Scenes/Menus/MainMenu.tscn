@@ -1,0 +1,104 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh12tuqdymonl"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_ca1p0"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ca1p0")
+
+[node name="Menu" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -129.5
+offset_right = 20.0
+offset_bottom = -106.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Main Menu"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = 67.5
+offset_right = 90.0
+offset_bottom = 168.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelSelect" type="Button" parent="Menu/VBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "Level Select"
+
+[node name="Controls" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Controls and Credits"
+
+[node name="Exit" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="ExitPrompt" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -99.5
+offset_right = 56.0
+offset_bottom = -30.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit?"
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ExitPrompt"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = 45.0
+offset_right = 102.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Yes" type="Button" parent="ExitPrompt/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Yes"
+
+[node name="No" type="Button" parent="ExitPrompt/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "No"
+
+[connection signal="pressed" from="Menu/VBoxContainer/LevelSelect" to="." method="_on_level_select_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="ExitPrompt/VBoxContainer/Yes" to="." method="_on_confirm_exit_pressed"]
+[connection signal="pressed" from="ExitPrompt/VBoxContainer/No" to="." method="_on_decline_exit_pressed"]

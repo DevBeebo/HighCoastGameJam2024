@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://di1rwdhvae4ac"]
+[gd_scene load_steps=5 format=3 uid="uid://di1rwdhvae4ac"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_hy2qa"]
 
@@ -7,7 +7,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ai8h"]
 radius = 7.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v2yh4"]
+
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_hy2qa")
@@ -22,3 +24,18 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactor"]
 shape = SubResource("CircleShape2D_2ai8h")
 debug_color = Color(0, 0.645604, 0.256412, 0.42)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = false
+target_position = Vector2(0, 0)
+collision_mask = 5
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CapsuleShape2D_v2yh4")
+debug_color = Color(0.729412, 0.462745, 0.282353, 0)
+
+[connection signal="body_entered" from="HurtBox" to="." method="hit_danger"]
