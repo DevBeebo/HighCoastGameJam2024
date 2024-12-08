@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://cea7bjkivx35c"]
+[gd_scene load_steps=10 format=4 uid="uid://cea7bjkivx35c"]
 
 [ext_resource type="PackedScene" uid="uid://di1rwdhvae4ac" path="res://Scenes/Prefabs/player.tscn" id="1_fp22j"]
 [ext_resource type="PackedScene" uid="uid://chufrnslirsie" path="res://Scenes/Prefabs/mover.tscn" id="2_8654q"]
@@ -6,9 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://sdhr1o31o8u8" path="res://Scenes/Prefabs/button.tscn" id="4_tpcqe"]
 [ext_resource type="PackedScene" uid="uid://0wrven0muldp" path="res://Scenes/Prefabs/floor_button.tscn" id="5_2qvhp"]
 [ext_resource type="TileSet" uid="uid://cqmqvd3fn65mp" path="res://Tile Sets/tile_set_no_phys.tres" id="5_nh1hf"]
+[ext_resource type="Script" path="res://Scripts/level_end.gd" id="7_d8eo5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmw8p"]
 size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jcui1"]
+size = Vector2(48, 16)
 
 [node name="Level1" type="Node2D"]
 
@@ -92,3 +96,18 @@ position = Vector2(424, 528)
 [node name="Button" parent="P2_Environment" instance=ExtResource("4_tpcqe")]
 position = Vector2(608, 528)
 reset_time = 3.0
+
+[node name="WinArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("7_d8eo5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinArea"]
+position = Vector2(824, 168)
+shape = SubResource("RectangleShape2D_jcui1")
+debug_color = Color(0.641746, 0.524019, 0, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WinArea"]
+position = Vector2(824, 520)
+shape = SubResource("RectangleShape2D_jcui1")
+debug_color = Color(0.641746, 0.524019, 0, 0.42)

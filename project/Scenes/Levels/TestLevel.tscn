@@ -1,18 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://vawcxnnc22v3"]
+[gd_scene load_steps=8 format=4 uid="uid://vawcxnnc22v3"]
 
 [ext_resource type="PackedScene" uid="uid://di1rwdhvae4ac" path="res://Scenes/Prefabs/player.tscn" id="1_1yvlr"]
 [ext_resource type="PackedScene" uid="uid://chufrnslirsie" path="res://Scenes/Prefabs/mover.tscn" id="2_5ypfr"]
+[ext_resource type="TileSet" uid="uid://cw10bnm5gwcbk" path="res://Tile Sets/tile_set.tres" id="3_53n4l"]
 [ext_resource type="PackedScene" uid="uid://0wrven0muldp" path="res://Scenes/Prefabs/floor_button.tscn" id="3_n6ole"]
 [ext_resource type="PackedScene" uid="uid://sdhr1o31o8u8" path="res://Scenes/Prefabs/button.tscn" id="4_tas6q"]
-[ext_resource type="TileSet" uid="uid://b8p4shxnora24" path="res://Tile Sets/TileSetTestDanger.tres" id="5_1e7kw"]
 [ext_resource type="Script" path="res://Scripts/level_end.gd" id="6_ha5my"]
-[ext_resource type="TileSet" uid="uid://cxskyifv1gsfx" path="res://Tile Sets/TileSetTestSafe.tres" id="6_w6q2j"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hr26k"]
-size = Vector2(160, 8)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_il87a"]
-size = Vector2(118, 10)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_od3ar"]
 radius = 32.0
@@ -27,38 +20,37 @@ position = Vector2(896, 384)
 player_id = 1
 
 [node name="Mover" parent="." node_paths=PackedStringArray("trigger") instance=ExtResource("2_5ypfr")]
-position = Vector2(580, 382)
+position = Vector2(576, 384)
 type = 1
 end_position = Vector2(180, 0)
 speed = 60.0
 trigger = NodePath("../FloorButton")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mover"]
-shape = SubResource("RectangleShape2D_hr26k")
+[node name="TileMapLayer" type="TileMapLayer" parent="Mover"]
+tile_map_data = PackedByteArray("AAD7////AAAEAAQAAAD8////AAAFAAQAAAD9////AAAFAAQAAAD+////AAAFAAQAAAD/////AAAFAAQAAAAAAP//AAAFAAQAAAABAP//AAAFAAQAAAACAP//AAAFAAQAAAADAP//AAAFAAQAAAAEAP//AAAFAAQAAAA=")
+tile_set = ExtResource("3_53n4l")
 
 [node name="Mover2" parent="." node_paths=PackedStringArray("trigger") instance=ExtResource("2_5ypfr")]
-position = Vector2(385, 427)
+position = Vector2(384, 432)
 type = 1
 end_position = Vector2(0, -300)
 speed = 150.0
 trigger = NodePath("../Button")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mover2"]
-shape = SubResource("RectangleShape2D_il87a")
+[node name="TileMapLayer" type="TileMapLayer" parent="Mover2"]
+tile_map_data = PackedByteArray("AAD8////AAAEAAQAAAD9////AAAFAAQAAAD+////AAAFAAQAAAD/////AAAFAAQAAAAAAP//AAAFAAQAAAABAP//AAAFAAQAAAACAP//AAAFAAQAAAADAP//AAAHAAQAAAA=")
+tile_set = ExtResource("3_53n4l")
 
 [node name="FloorButton" parent="." instance=ExtResource("3_n6ole")]
 position = Vector2(616, 432)
 
 [node name="Button" parent="." instance=ExtResource("4_tas6q")]
-position = Vector2(466, 432)
+position = Vector2(464, 432)
 reset_time = 3.0
 
-[node name="TileMapDanger" type="TileMapLayer" parent="."]
-tile_set = ExtResource("5_1e7kw")
-
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAANABsAAAAEAAAAAAAOABsAAAAEAAAAAAAPABsAAAAEAAAAAAAQABsAAAAEAAAAAAARABsAAAAEAAAAAAASABsAAAAEAAAAAAATABsAAAAEAAAAAAAUABsAAAAEAAAAAAAVABsAAAAEAAAAAAAWABsAAAAEAAAAAAAXABsAAAAEAAAAAAAYABsAAAAEAAAAAAAZABsAAAAEAAAAAAAaABsAAAAEAAAAAAAbABsAAAAEAAAAAAAcABsAAAAEAAAAAAAdABsAAAAEAAAAAAAeABsAAAAEAAAAAAAfABsAAAAEAAAAAAAgABsAAAAEAAAAAAAhABsAAAAEAAAAAAAiABsAAAAEAAAAAAAjABsAAAAEAAAAAAAkABsAAAAEAAAAAAAlABsAAAAEAAAAAAAmABsAAAAEAAAAAAAnABsAAAAEAAAAAAAoABsAAAAEAAAAAAApABsAAAAEAAAAAAAqABsAAAAEAAAAAAArABsAAAAEAAAAAAAsABsAAAAEAAAAAAAtABsAAAAEAAAAAAAuABsAAAAEAAAAAAAvABsAAAAEAAAAAAAwABsAAAAEAAAAAAAxABsAAAAEAAAAAAAyABsAAAAEAAAAAAAzABsAAAAEAAAAAAA0ABsAAAAEAAAAAAA1ABsAAAAEAAAAAAA2ABsAAAAEAAAAAAA3ABsAAAAEAAAAAAA4ABsAAAAEAAAAAAA5ABsAAAAEAAAAAAA6ABsAAAAEAAAAAAA7ABsAAAAEAAAAAAA8ABsAAAAEAAAAAAA9ABsAAAAEAAAAAAA+ABsAAAAEAAAAAAA/ABsAAAAEAAAAAABAABsAAAAEAAAAAABBABsAAAAEAAAAAABCABsAAAAEAAAAAABDABsAAAAEAAAAAABEABsAAAAEAAAAAAA=")
-tile_set = ExtResource("6_w6q2j")
+tile_map_data = PackedByteArray("AAANABsAAAAAAAAAAAAOABsAAAABAAAAAAAPABsAAAABAAAAAAAQABsAAAABAAAAAAARABsAAAABAAAAAAASABsAAAABAAAAAAATABsAAAABAAAAAAAUABsAAAABAAAAAAAVABsAAAABAAAAAAAWABsAAAABAAAAAAAXABsAAAABAAAAAAAYABsAAAABAAAAAAAZABsAAAABAAAAAAAaABsAAAABAAAAAAAbABsAAAABAAAAAAAcABsAAAABAAAAAAAdABsAAAABAAAAAAAeABsAAAABAAAAAAAfABsAAAABAAAAAAAgABsAAAABAAAAAAAhABsAAAABAAAAAAAiABsAAAABAAAAAAAjABsAAAABAAAAAAAkABsAAAABAAAAAAAlABsAAAABAAAAAAAmABsAAAABAAAAAAAnABsAAAABAAAAAAAoABsAAAAEAAQAAAApABsAAAAFAAQAAAAqABsAAAAFAAQAAAArABsAAAAFAAQAAAAsABsAAAABAAAAAAAtABsAAAABAAAAAAAuABsAAAABAAAAAAAvABsAAAABAAAAAAAwABsAAAABAAAAAAAxABsAAAABAAAAAAAyABsAAAABAAAAAAAzABsAAAABAAAAAAA0ABsAAAABAAAAAAA1ABsAAAABAAAAAAA2ABsAAAABAAAAAAA3ABsAAAABAAAAAAA4ABsAAAABAAAAAAA5ABsAAAABAAAAAAA6ABsAAAABAAAAAAA7ABsAAAABAAAAAAA8ABsAAAABAAAAAAA9ABsAAAABAAAAAAA+ABsAAAABAAAAAAA/ABsAAAABAAAAAABAABsAAAABAAAAAABBABsAAAABAAAAAABCABsAAAABAAAAAABDABsAAAABAAAAAABEABsAAAADAAQAAAA=")
+tile_set = ExtResource("3_53n4l")
 
 [node name="LevelEnd" type="Area2D" parent="."]
 position = Vector2(672, 416)

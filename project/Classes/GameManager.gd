@@ -7,6 +7,15 @@ var levels = [ # An array with all the levels in order. 0 is a test level
 	preload("res://Scenes/Levels/TestLevel.tscn"),
 	preload("res://Scenes/Levels/level_1.tscn"),
 	preload("res://Scenes/Levels/TestLevel.tscn"),
+	preload("res://Scenes/Levels/level_1.tscn"),
+	preload("res://Scenes/Levels/TestLevel.tscn"),
+	preload("res://Scenes/Levels/level_1.tscn"),
+	preload("res://Scenes/Levels/TestLevel.tscn"),
+	preload("res://Scenes/Levels/level_1.tscn"),
+	preload("res://Scenes/Levels/TestLevel.tscn"),
+	preload("res://Scenes/Levels/level_1.tscn"),
+	preload("res://Scenes/Levels/TestLevel.tscn"),
+	preload("res://Scenes/Levels/level_1.tscn"),
 	preload("res://Scenes/Levels/TestLevel.tscn"),
 ]
 var completed_levels = 0 # The numbers of levels completed
