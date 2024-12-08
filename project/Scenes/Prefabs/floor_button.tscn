@@ -1,20 +1,54 @@
-[gd_scene load_steps=4 format=3 uid="uid://0wrven0muldp"]
+[gd_scene load_steps=8 format=3 uid="uid://0wrven0muldp"]
 
 [ext_resource type="Script" path="res://Scripts/trigger.gd" id="1_ky35m"]
+[ext_resource type="Texture2D" uid="uid://dandnv7domg56" path="res://Sprites/animerad knapp.png" id="2_mwq5h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pwjt"]
+atlas = ExtResource("2_mwq5h")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3frf"]
+atlas = ExtResource("2_mwq5h")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5x6gr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pwjt")
+}],
+"loop": true,
+"name": &"Off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3frf")
+}],
+"loop": true,
+"name": &"On",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fouxn"]
-size = Vector2(18, 3)
+size = Vector2(8, 4)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pyeeq"]
-size = Vector2(20, 1)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_os5p7"]
+radius = 9.0
+height = 32.0
 
 [node name="FloorButton" type="Area2D"]
 collision_layer = 0
 collision_mask = 6
 script = ExtResource("1_ky35m")
 
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_5x6gr")
+animation = &"Off"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1.5)
+position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_fouxn")
 debug_color = Color(0, 0.64457, 0.278249, 0.42)
 
@@ -22,8 +56,9 @@ debug_color = Color(0, 0.64457, 0.278249, 0.42)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_pyeeq")
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_os5p7")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

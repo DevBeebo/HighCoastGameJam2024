@@ -16,6 +16,7 @@ func _on_body_entered(_area):
 	# Skips if it was already stood on
 	if state: return
 	state = true
+	$Sprite.play("On")
 	state_changed.emit(not normally_closed)
 
 
@@ -24,5 +25,6 @@ func _on_body_exited(_area):
 	# Skips if there are things still on the button
 	if self.has_overlapping_areas(): return
 	state = false
+	$Sprite.play("Off")
 	state_changed.emit(normally_closed)
 	
