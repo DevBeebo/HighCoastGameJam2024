@@ -1,10 +1,15 @@
 extends Node
 
 signal level_change(new_id) # Emitted when the level changes and says to which ID. -1 means no level
+signal level_completed(completed_levels)
 
 var levels = [ # An array with all the levels in order. 0 is a test level
 	preload("res://Scenes/Levels/TestLevel.tscn"),
+	preload("res://Scenes/Levels/level_1.tscn"),
+	preload("res://Scenes/Levels/TestLevel.tscn"),
+	preload("res://Scenes/Levels/TestLevel.tscn"),
 ]
+var completed_levels = 0 # The numbers of levels completed
 var current_level : int = -1 # The ID of the current level to reset on death. -1 means no level is currently being played
 var current_menu : String = "MainMenu" # The name of the current menus node
 var level_scene : Node2D # The root node of the current level
@@ -13,7 +18,8 @@ var level_scene : Node2D # The root node of the current level
 
 func _ready():
 	change_menu(current_menu)
-	pass
+	menu_canvas.get_node("LevelSelect").call_deferred("update", completed_levels)
+
 
 func change_menu(menu:String):
 	if current_level != -1:
@@ -22,6 +28,7 @@ func change_menu(menu:String):
 		menu_canvas.get_node(current_menu).visible = false
 		current_menu = menu
 		menu_canvas.get_node(menu).visible = true
+
 
 func load_level(id):
 	# Skip if id does not refer to a Level
@@ -36,12 +43,21 @@ func load_level(id):
 	current_level = id # Sets current level to the ID of the new level
 	get_tree().root.call_deferred("add_child", level_scene)
 	level_change.emit(id)
-	
+
+
 func unload_level():
 	if level_scene == null: return
 	level_scene.queue_free()
 	current_level = -1 # Sets it to -1 as it means no level is being played
 	level_change.emit(-1)
+
+
+func complete_level():
+	if current_level > completed_levels:
+		completed_levels = current_level
+	level_completed.emit(current_level)
+	change_menu("LevelSelect")
+
 
 func player_died(id:int, why:String):
 	print("Player ", id + 1, " died because ", why)

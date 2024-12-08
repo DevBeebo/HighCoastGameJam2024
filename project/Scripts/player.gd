@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 signal died(why) # Emitted when the player dies and what killed them (why)
 
-const SPEED = 200.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 150.0
+const JUMP_VELOCITY = -300.0
 
 @export var player_id : int # "0" for player #1 and "1" for player #2
 
@@ -38,6 +38,20 @@ func _physics_process(delta):
 	#endregion
 	# Check if the player should die of being squished
 	squish_check()
+	animation_handling()
+
+
+func animation_handling():
+	if self.velocity.x == 0 or not is_on_floor():
+		$Sprite.play("Idle")
+	else:
+		$Sprite.play("Run")
+		if self.velocity.x > 1:
+			$Sprite.flip_h = false
+		else:
+			$Sprite.flip_h = true
+	pass
+
 
 func squish_check():
 	# Shots 4 hit scans to see if 2 on a axis both hit something, if they do the player dies
@@ -52,7 +66,8 @@ func squish_check():
 			died.emit("Squished")
 			GameManager.player_died(player_id, "Squished")
 			break
-			
+
+
 func hit_danger(_area):
 	died.emit("Spikes")
 	GameManager.player_died(player_id, "Spikes")

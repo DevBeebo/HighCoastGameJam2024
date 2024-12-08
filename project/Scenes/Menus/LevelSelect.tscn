@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://2yyjf50ngway"]
 
-[ext_resource type="Script" path="res://Scenes/level_select_menu.gd" id="1_ftln6"]
-[ext_resource type="Script" path="res://Scenes/Menus/level_button.gd" id="2_unlmh"]
+[ext_resource type="Script" path="res://Scripts/level_select_menu.gd" id="1_ftln6"]
+[ext_resource type="Script" path="res://Scripts/level_button.gd" id="2_unlmh"]
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -41,12 +41,6 @@ theme_override_constants/margin_bottom = 5
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
 columns = 6
-
-[node name="Level" type="Button" parent="VBoxContainer/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "1"
 
 [node name="ReturnMargin" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
