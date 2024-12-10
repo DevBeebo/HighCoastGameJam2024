@@ -25,7 +25,9 @@ offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
-text = "Controls & Credits"
+text = "Controls"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Return" type="Button" parent="."]
 layout_mode = 1
@@ -41,5 +43,40 @@ offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Return"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 40.0
+offset_bottom = 11.5
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "Player 1
+W - Jump
+A and D - Movement
+S - Interact"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -343.0
+offset_top = -102.5
+offset_bottom = 102.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "Player 2 (Arrow Keys)
+Up - Jump
+Left and Right - Movement
+Down - Interact"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Return" to="." method="_on_return_pressed"]
